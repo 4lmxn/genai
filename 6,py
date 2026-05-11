@@ -1,0 +1,16 @@
+from transformers import pipeline
+
+sentiment_analyzer = pipeline("sentiment-analysis")
+
+reviews = [
+    "The product is amazing! I love it!",
+    "Terrible service. I am very disappointed.",
+    "This is a great experience, I will buy again.",
+    "Worst purchase I've ever made, completely dissatisfied.",
+    "I'm happy with the quality, but the delivery was delayed."
+]
+
+results = sentiment_analyzer(reviews)
+for feedback, result in zip(reviews, results):
+    print(f"Feedback: {feedback}")
+    print(f"Sentiment: {result['label']} (Confidence: {result['score']:.2f})\n")
